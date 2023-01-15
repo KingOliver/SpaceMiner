@@ -123,7 +123,6 @@ void GameManager::ScanPlanet(Planet *p){
     
     srand((unsigned)time(0)); 
     std::vector<int> resourceNumbers(resourceVecSize);
-    //char type = p->GetType();
     std::cout << "Resources found!" << std::endl;
     std::vector<std::vector<int>> rangeVec = p->GetResourceRange();
 
