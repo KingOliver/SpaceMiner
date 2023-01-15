@@ -67,6 +67,7 @@ void GameManager::AddResourcesToVec(){
 
 
 Planet* GameManager::GeneratePlanet(){
+    //To be changed
     std::cout << "Searching For Planets..." << std::endl;
     srand((unsigned)time(0));
     int type = rand()%10;
@@ -198,7 +199,7 @@ void GameManager::ShowCargo(){
     }
 }
 
-void GameManager::SellCargo(Planet* p){
+void GameManager::SellCargo(Planet* p, Player player){
     int input;
     bool check = true;
     std::cout << "Please select cargo to sell" << std::endl;
@@ -215,26 +216,18 @@ void GameManager::SellCargo(Planet* p){
         std::cout << std::endl;
         //check input is within valid range
         if (input > 0 && input < (resourceVecSize+2)){
-            switch (input) {
-                case (1) :
-                {
-                    //Get amount in cargo and then empty fo that resource
-                    int total = resourceObjVec[0]->GetCargo();
-                    resourceObjVec[0]->ChangeCargo(total);
-                    break;
-                }
-                case (2) :
-                {
-                    //Get amount in cargo and then empty fo that resource
-                    int total = resourceObjVec[1]->GetCargo();
-                    resourceObjVec[1]->ChangeCargo(total);
-                    break;
-                }
-                case (6) :
-                {
-                    return;
-                }
+            if (input != 6) {
+                //Get amount in cargo and then empty for that resource
+                input--;
+                int cargoAmount = resourceObjVec[input]->GetCargo();
+                resourceObjVec[input]->ChangeCargo(cargoAmount);
+                int valueTotal = p->GetSellPrice(input) * resourceObjVec[input]->GetCargo();
+                player.ChangeMoney(valueTotal);
+                break;
+            } else {
+                return;
             }
+            
             
         } else {
             std::cout << "Invalid Input" << std::endl;

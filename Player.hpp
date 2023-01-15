@@ -10,6 +10,7 @@ public:
     Player(std::string name);
     ~Player();
     std::string GetName();
+    void ChangeMoney(int value);
 
 private:
 

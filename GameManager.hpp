@@ -30,7 +30,7 @@ public:
     void MinePlanet(Planet *p);
     const int SelectResource(const char *s, Planet *p);
     void ShowCargo();
-    void SellCargo(Planet* p);
+    void SellCargo(Planet* p, Player player);
 private:
     std::vector<Resource*> resourceObjVec;
     std::vector<char> PlanetTypes {'R', 'M', 'E'};
